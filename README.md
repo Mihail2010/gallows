@@ -3,6 +3,7 @@ import random
 attempt = 1
 words =[i for i in open(r"C:\Users\Misha\Downloads\Telegram Desktop\russian_nouns.txt", "r",  encoding="utf-8").read().split("\n") if len(i) == 4]
 print('Правила игры: нажимай на буквы , чтобы угадать слово.')
+
 def letter(letter):
     global word, word_2, attempt
     flag = True
@@ -11,6 +12,8 @@ def letter(letter):
         if letter == word[i]:
             word_2[i] = word[i]
             flag = False
+            if ''.join(word_2) == word:
+                canvas.create_text(200, 100, text='YOU WIN', font=("Arial", 16), fill="green")
     if flag:
         if attempt == 1:
             circle = canvas.create_oval(75, 100, 125, 150, outline="black")
@@ -24,7 +27,7 @@ def letter(letter):
             line = canvas.create_line(100, 170, 70, 200, width=3, fill="black")
         elif attempt == 6:
             line = canvas.create_line(100, 170, 130, 200, width=3, fill="black")
-            canvas.create_text(100, 50, text='GAME OVER', font=("Arial", 16), fill="red")
+            canvas.create_text(200, 100, text='GAME OVER', font=("Arial", 16), fill="red")
 
         attempt += 1
     canvas.create_text(250, 50, text=word_2, font=("Arial", 16), fill="blue")
@@ -57,7 +60,6 @@ canvas.pack()
 canvas.create_text(250, 50, text="_ _ _ _", font=("Arial", 16), fill="blue")
 russian_lower = ['а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
 russian_upper = [letter.lower() for letter in russian_lower]
-
 for i in russian_upper:
     create_button(i, 2, 1)
 
