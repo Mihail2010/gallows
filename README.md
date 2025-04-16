@@ -2,6 +2,7 @@ import tkinter as tk
 import random
 attempt = 1
 words =[i for i in open(r"C:\Users\Misha\Downloads\Telegram Desktop\russian_nouns.txt", "r",  encoding="utf-8").read().split("\n") if len(i) == 4]
+print('Правила игры: нажимай на буквы , чтобы угадать слово.')
 def letter(letter):
     global word, word_2, attempt
     flag = True
